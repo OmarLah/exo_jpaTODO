@@ -16,6 +16,9 @@ public class Task {
 
     @OneToOne(mappedBy = "task",cascade = CascadeType.ALL,orphanRemoval = true)
     private TaskInfo taskInfo;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Task() {
     }
@@ -51,4 +54,24 @@ public class Task {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", completed=" + completed +
+                ", taskInfo=" + taskInfo.toString() +
+                '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 }
